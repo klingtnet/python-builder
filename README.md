@@ -5,10 +5,10 @@ This work is based on a script of @pleiszenburg.
 ## Usage
 
 ```sh
-$ ./build-python build
+$ ./pyb build
 ```
 
-For usage information run `./build-python help`.
+For usage information run `./pyb help`.
 
 ## Requirements
 
