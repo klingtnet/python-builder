@@ -23,7 +23,7 @@ For usage information run `./pyb help`.
 Make sure to import the python release signing GPG key:
 
 ```sh
-$ gpg --search-keys <key-id>
+$ gpg --search-keys <public-key>
 ```
 
-Note that I had to run this `gpg --keyserver=keys.gnupg.net --search-keys <key-id>` on Raspbian.
+Note that I had to run this `gpg --keyserver=keys.gnupg.net --search-keys <public-key>` on Raspbian.
