@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# fail on errors and intermediate non-zero exit-codes in pipes
+# also called bash safe-mode
+set -eo pipefail
+
+# set default variables
+# can be overwritten by setting the environment variable
+version=${version:-3.7.0}
+cache="${cache:-${PWD}}"
+prefix="${prefix:-${PWD}/target}"
+
+_build() {
+    mkdir -p "$cache" "$prefix"
+
+    cores_num=$(nproc --all)
+
+    # download, extract and verfiy signature in one-step
+    curl --silent --fail "https://www.python.org/ftp/python/$version/Python-$version.tar.xz"\
+        | tee >(tar --extract --xz -C "$cache")\
+        | gpg --verify <(curl --fail "https://www.python.org/ftp/python/$version/Python-$version.tar.xz.asc") -
+
+    # push directory on stack
+    pushd "${cache}/Python-$version"
+    ./configure --prefix=$prefix --enable-optimizations
+
+    make -j $cores_num
+    make -j $cores_num install
+
+    # pop directory from stafck
+    popd
+}
+
+_help() {
+    cat<<EOF
+version=$version cache=$cache prefix=$prefix $0 build
+
+    version: python version to build
+    cache: directory for build cache
+    prefix: package prefix directory
+
+    Default values are shown, setting variables is optional
+EOF
+}
+
+case "$1" in
+    "help"|"-h"|"--help")
+        _help
+        exit 0
+        ;;
+    "build")
+        # fail on unset variables
+        set -u
+        _build
+        ;;
+    ""|"*")
+        _help
+        exit 1
+        ;;
+esac
