@@ -6,7 +6,7 @@ set -eo pipefail
 
 # set default variables
 # can be overwritten by setting the environment variable
-version=${version:-3.7.0}
+version=${version:-3.7.2}
 cache="${cache:-${PWD}}"
 prefix="${prefix:-${PWD}/target}"
 
