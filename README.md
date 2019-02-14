@@ -1,6 +1,6 @@
 # Python Builder
 
-This work is based on a script of @pleiszenburg.
+This work is based on a script of [@pleiszenburg](https://github.com/pleiszenburg).
 
 ## Usage
 
