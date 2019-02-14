@@ -9,3 +9,11 @@ $ ./build-python build
 ```
 
 For usage information run `./build-python help`.
+
+## Requirements
+
+- bash
+- curl
+- gpg
+- GNU Make
+- tar
