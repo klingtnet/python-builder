@@ -27,7 +27,7 @@ _build() {
     make -j $cores_num
     make -j $cores_num install
 
-    # pop directory from stafck
+    # pop directory from stack
     popd
 }
 
