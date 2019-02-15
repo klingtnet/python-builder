@@ -16,6 +16,7 @@ For usage information run `./pyb help`.
 - curl
 - gpg
 - GNU Make
+- gcc
 - tar
 
 ## Troubleshooting
